@@ -9,7 +9,8 @@ import {
     gql
 } from "@apollo/client";
 
-import LinkList from './LinkList';
+import LinkList from './links/LinkList';
+import Launch from './launch/Launch';
 
 const client = new ApolloClient({
   uri: 'http://localhost:9000/',
@@ -21,7 +22,10 @@ const App = () => {
     <ApolloProvider client={client}>
       <div className="App">
         <h4>App</h4>
-        <LinkList />
+        {/* <LinkList /> */}
+
+        <Launch />
+
       </div>
     </ApolloProvider>
 
