@@ -11,6 +11,7 @@ import {
 
 import LinkList from './links/LinkList';
 import Launch from './launch/Launch';
+import Events from './events/Events';
 
 const client = new ApolloClient({
   uri: 'http://localhost:9000/',
@@ -24,7 +25,10 @@ const App = () => {
         <h4>App</h4>
         {/* <LinkList /> */}
 
-        <Launch />
+        {/* <Launch /> */}
+
+        <Events 
+        />
 
       </div>
     </ApolloProvider>
