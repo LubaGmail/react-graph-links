@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import Comments from './comments';
 
 const GET_EVENTS = gql`
     {
@@ -8,6 +9,7 @@ const GET_EVENTS = gql`
             name
             date
             comments {
+                id
                 title
                 text
             }
@@ -23,28 +25,47 @@ const Events = () => {
     });
     if (loading) return <p>Loading...</p>
     if (error) return <p>error.message</p>
-    // console.log('data', data.events[0].imgSrc)
+    // console.log('data', data.events[0].comments[0].title)
 
     return (
         <>
             <h4>Events</h4>
+            <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Image</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
             {
                 // data.events[0].name
                 data.events.map( (el, i) => (
-                    <div key={el.id}>
-                        {el.name} | &nbsp;
-                        {
-                            // Date.parse(el.date)
-                            new Date(el.date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
-                        } | &nbsp;
+                    <tr key={el.id}>
+                        <td>{el.name} </td>
+                        <td>
+                            {
+                                // Date.parse(el.date)
+                                new Date(el.date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+                            }
+                        </td>
                         
-                        {el.imgSrc}
-                        <img src={el.imgSrc} alt='`Day ${i}`'  width="300"  
-                        />
+                        <td>
+                          <img src={el.imgSrc} alt='`Day ${i}`'  width="300"  
+                            />
+                        </td>
+                        <td>
+                            <Comments comments={el.comments}
+                            />
+                        </td>   
                                    
-                    </div>
+                    </tr>
                 ))
             }
+            </tbody>
+            </table>
         </>
     )
 }

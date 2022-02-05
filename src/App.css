@@ -5,3 +5,15 @@
 li {
   list-style-type: none;
 }
+table, th, td {
+  border:1px solid black;
+}
+th, td {
+  padding: 15px;
+}
+
+th:nth-child(even),td:nth-child(even) {
+  background-color: azure
+}
+
+tr:hover {background-color:bisque}  
