@@ -4,9 +4,9 @@ const Mission = ({mission}) => {
     // console.log('mission', mission)
     return (
         <>
-            <div>
+            <p key={mission.id}>
                 { mission.title } | { mission. year }
-            </div>
+            </p>
         </>
     )
 }

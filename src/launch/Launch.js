@@ -15,6 +15,7 @@ const GET_LAUNCHES = gql`
         }
         rocket
         isBooked
+        launchDate
     }
   }
 `;
@@ -34,12 +35,15 @@ const Launch = () => {
                 <h4>Launch</h4>
                 {
                     data?.launches && (
+
                         data.launches.map( (el) => (
-                            <li key={el.id}>
-                                {el.id} | {el.site} | {el.rocket} <br/>
+                       
+                            <div key={el.id}>
+                                {el.id} | {el.site} | {el.rocket} | {el.launchDate}
                                 <Mission mission={el.mission[0]} 
                                 />
-                            </li>
+                            </div>
+                      
                         ))
                     )
                 }
